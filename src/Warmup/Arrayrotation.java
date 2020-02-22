@@ -12,17 +12,23 @@ public class Arrayrotation
             return anArray;
         }
 
-        for (int i = 0; i < anArray.length; i++)
+        int[] anotherArray = new int[amountToMove];
+
+        for (int i = 0; i < amountToMove; i++)
         {
-            int newLocation = anArray.length - amountToMove + i;
-            if (newLocation >= anArray.length)
-            {
-                newLocation = newLocation - anArray.length;
-            }
-            int holder = anArray[newLocation];
-            anArray[newLocation] = anArray[i];
-            anArray[i] = holder;
+            anotherArray[i] = anArray[i];
         }
+
+        for (int i = amountToMove; i < anArray.length; i++)
+        {
+            anArray[i - amountToMove] = anArray[i];
+        }
+
+        for (int i = anArray.length - amountToMove, k=0; i < anArray.length; i++, k++)
+        {
+            anArray[i] = anotherArray[k];
+        }
+
         return anArray;
     }
 
@@ -36,6 +42,11 @@ public class Arrayrotation
         }
         return null;
     }
+
+    public static int[] reverseArray(int[] anArray)
+    {
+        return null;
+    }
 }
 
 class Testers3
@@ -44,6 +55,6 @@ class Testers3
     {
         int[] anArray = {1, 2, 3, 4, 5, 6, 7};
 
-        Arrayrotation.rotLeft(anArray, 1);
+        Arrayrotation.rotLeft(anArray, 2);
     }
 }
