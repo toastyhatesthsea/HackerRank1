@@ -37,7 +37,8 @@ class AnagramTesters
     public static void main(String[] asasas)
     {
         String thing = "abba";
+        String fail = "ifailuhkqq";
 
-        Anagram.solveAnagram(thing);
+        Anagram.solveAnagram(fail);
     }
 }
