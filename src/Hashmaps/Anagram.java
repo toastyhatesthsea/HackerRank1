@@ -1,24 +1,23 @@
 package Hashmaps;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Dictionary;
-import java.util.HashMap;
+import java.util.*;
 
 public class Anagram
 {
 
-    public static String solveAnagram(String s1)
+    public static int solveAnagram(String s1)
     {
         HashMap<Character, ArrayList<Integer>> mapOfLocation = new HashMap<>();
         int index = 0;
         char[] str1Array = s1.toCharArray();
+        int answer = 0;
 
         for (Character thing : str1Array)
         {
             ArrayList<Integer> temp = mapOfLocation.getOrDefault(thing, null);
 
             if (temp == null)
+
             {
                 ArrayList<Integer> rawr = new ArrayList<>();
                 rawr.add(index);
@@ -26,16 +25,39 @@ public class Anagram
             } else
             {
                 temp.add(index);
+                answer += checkForAnagram(mapOfLocation.get(thing), str1Array, index); //just get arraylist for single character
             }
             index++;
         }
-        return null;
+        return answer;
     }
 
-    public static int checkForAnagram(HashMap<Character, ArrayList<Integer>> thing, char[] str1Array, int index)
+    public static int checkForAnagram(ArrayList<Integer> thing, char[] str1Array, int index)
     {
         //TODO: Need to start checking array at the first instance of the found character in the ArrayList while checking
         // At the same time as the current index of the duplicate character and work forwards/backwards checking
+
+        int answer = 0;
+
+        for (Integer location : thing)
+        {
+            String firstSubstring = "";
+            String secondSubString = "";
+
+            for (int i = location, j = index; i < index; i++, j--)
+            {
+                firstSubstring = firstSubstring + str1Array[i];
+                secondSubString = secondSubString + str1Array[j];
+
+                if (isAnagram(firstSubstring, secondSubString))
+                {
+                    answer++;
+                }
+            }
+        }
+        return answer;
+
+
     }
 
 
@@ -58,8 +80,8 @@ class AnagramTesters
         String thing = "abba";
         String fail = "ifailuhkgg";
 
-        //Anagram.solveAnagram(fail);
+        Anagram.solveAnagram(thing);
 
-        boolean answer = Anagram.isAnagram("anA", "ana");
+        //boolean answer = Anagram.isAnagram("anA", "ana");
     }
 }
