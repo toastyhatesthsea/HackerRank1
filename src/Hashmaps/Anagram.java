@@ -32,6 +32,29 @@ public class Anagram
         return answer;
     }
 
+    public static int frontCheckAnagram(ArrayList<Integer> thing, char[] str1Array, int index)
+    {
+        int answer = 0;
+
+        for (Integer location : thing)
+        {
+            String firstSubstring = "";
+            String secondSubString = "";
+
+            for (int i = location, j = index; i < index; i++, j++)
+            {
+                firstSubstring = firstSubstring + str1Array[i];
+                secondSubString = secondSubString + str1Array[j];
+
+                if (isAnagram(firstSubstring, secondSubString))
+                {
+                    answer++;
+                }
+            }
+        }
+        return answer;
+    }
+
     public static int checkForAnagram(ArrayList<Integer> thing, char[] str1Array, int index)
     {
         //TODO: Need to start checking array at the first instance of the found character in the ArrayList while checking
@@ -57,7 +80,6 @@ public class Anagram
         }
         return answer;
 
-
     }
 
 
@@ -78,9 +100,11 @@ class AnagramTesters
     public static void main(String[] asasas)
     {
         String thing = "abba";
-        String fail = "ifailuhkgg";
+        String fail = "cdacdxb";
+        String kkkk = "kkkk";
+        String cdxcd = "cdxcd";
 
-        Anagram.solveAnagram(thing);
+        int answer = Anagram.solveAnagram(cdxcd);
 
         //boolean answer = Anagram.isAnagram("anA", "ana");
     }
