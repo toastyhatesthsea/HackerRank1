@@ -5,6 +5,9 @@ import java.util.*;
 public class Anagram
 {
 
+    public static HashMap<Integer, Boolean> fun = new HashMap<>();
+
+
     public static int solveAnagram(String s1)
     {
         HashMap<Character, ArrayList<Integer>> mapOfLocation = new HashMap<>();
@@ -35,6 +38,11 @@ public class Anagram
     public static int frontCheckAnagram(ArrayList<Integer> thing, char[] str1Array, int index)
     {
         int answer = 0;
+        ArrayList<Integer> index1 = new ArrayList<>();
+        int[] holderThing = new int[1000];
+        int holderIndex = 0;
+        Integer fun = 10;
+
 
         for (Integer location : thing)
         {
@@ -43,16 +51,32 @@ public class Anagram
 
             for (int i = location, j = index; i < index; i++, j++)
             {
+                index1.add(i);
+                index1.add(j);
+                holderThing[holderIndex] = i;
+                holderIndex++;
+                holderThing[holderIndex] = j;
+                holderIndex++;
                 firstSubstring = firstSubstring + str1Array[i];
                 secondSubString = secondSubString + str1Array[j];
 
                 if (isAnagram(firstSubstring, secondSubString))
                 {
+              //      fun.put(Arrays.)
                     answer++;
                 }
             }
         }
         return answer;
+    }
+
+    public static void putInFunFun(ArrayList<Integer> thing)
+    {
+        Collections.sort(thing);
+        for (Integer meow : thing)
+        {
+            //fun.put()
+        }
     }
 
     public static int checkForAnagram(ArrayList<Integer> thing, char[] str1Array, int index)
@@ -104,8 +128,25 @@ class AnagramTesters
         String kkkk = "kkkk";
         String cdxcd = "cdxcd";
 
-        int answer = Anagram.solveAnagram(cdxcd);
+        ArrayList<Integer> aThing = new ArrayList<>();
+        ArrayList<Integer> aThing2 = new ArrayList<>();
+
+        aThing.add(1);
+        aThing.add(2);
+        aThing2.add(1);
+        aThing2.add(2);
+        aThing2.remove(Integer.valueOf(1));
+        aThing2.add(1);
+        Collections.sort(aThing2);
+
+        boolean isEqual = aThing.equals(aThing2);
+
+
+
+        //int answer = Anagram.solveAnagram(cdxcd);
 
         //boolean answer = Anagram.isAnagram("anA", "ana");
+
+        //TODO Add a hashmap where the index of the characters corresepond to the key, "0134"
     }
 }
